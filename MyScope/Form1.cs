@@ -33,7 +33,7 @@ namespace MyScope
             dataGridViewTasks.Columns[3].Width = 250;
             dataGridViewTasks.Columns[4].Visible = false;
             dataGridViewTasks.Columns[5].Visible = false;
-            dataGridViewTasks.Columns.Add("ColumnStatus", "Status");
+            dataGridViewTasks.Columns.Add(new DataGridViewImageColumn(true));
             dataGridViewTasks.Columns[6].HeaderText = "Status";
             dataGridViewTasks.Columns[6].Width = 100;
             // Hier fehlt noch der Image ColumnType
