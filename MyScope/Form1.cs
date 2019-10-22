@@ -24,6 +24,7 @@ namespace MyScope
             appData = new AppData();
             loadData();
 
+            //Initialize DataGridViewTasks
             dataGridViewTasks.DataSource = appData.aufgaben;
             dataGridViewTasks.Columns[0].HeaderText = "Name";
             dataGridViewTasks.Columns[0].Width = 612;
@@ -36,6 +37,21 @@ namespace MyScope
             dataGridViewTasks.Columns.Add(new DataGridViewImageColumn(true));
             dataGridViewTasks.Columns[6].HeaderText = "Status";
             dataGridViewTasks.Columns[6].Width = 100;
+            // Hier fehlt noch der Image ColumnType
+
+            //Initialize DataGridView Projects
+            dataGridViewProjects.DataSource = appData.projekte;
+            dataGridViewProjects.Columns[0].HeaderText = "Name";
+            dataGridViewProjects.Columns[0].Width = 612;
+            dataGridViewProjects.Columns[1].Visible = false;
+            dataGridViewProjects.Columns[2].Visible = false;
+            dataGridViewProjects.Columns[3].HeaderText = "Geplanter Abschluss";
+            dataGridViewProjects.Columns[3].Width = 250;
+            dataGridViewProjects.Columns[4].Visible = false;
+            dataGridViewProjects.Columns[5].Visible = false;
+            dataGridViewProjects.Columns.Add(new DataGridViewImageColumn(true));
+            dataGridViewProjects.Columns[6].HeaderText = "Status";
+            dataGridViewProjects.Columns[6].Width = 100;
             // Hier fehlt noch der Image ColumnType
         }
 

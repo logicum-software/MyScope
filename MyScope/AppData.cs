@@ -12,12 +12,12 @@ namespace MyScope
     class AppData
     {
         public BindingList<Aufgabe> aufgaben { get; set; }
-        public BindingList<Projekt> Projekte { get; set; }
+        public BindingList<Projekt> projekte { get; set; }
 
         public AppData()
         {
             aufgaben = new BindingList<Aufgabe>();
-            Projekte = new BindingList<Projekt>();
+            projekte = new BindingList<Projekt>();
         }
 
         internal Boolean delTask(String name)
