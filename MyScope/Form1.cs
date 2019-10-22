@@ -34,9 +34,10 @@ namespace MyScope
             dataGridViewTasks.Columns[3].Width = 250;
             dataGridViewTasks.Columns[4].Visible = false;
             dataGridViewTasks.Columns[5].Visible = false;
+            dataGridViewTasks.Columns[6].Visible = false;
             dataGridViewTasks.Columns.Add(new DataGridViewImageColumn(true));
-            dataGridViewTasks.Columns[6].HeaderText = "Status";
-            dataGridViewTasks.Columns[6].Width = 100;
+            dataGridViewTasks.Columns[7].HeaderText = "Status";
+            dataGridViewTasks.Columns[7].Width = 100;
             // Hier fehlt noch der Image ColumnType
 
             //Initialize DataGridView Projects
@@ -94,6 +95,20 @@ namespace MyScope
             }
         }
 
+        private void sortLists()
+        {
+            // Sort Lists ascending to dtPlannedEnd
+            List<Aufgabe> tmpListTasks = appData.aufgaben.OrderBy(x => x.dtPlannedEnd).ToList();
+            appData.aufgaben = new BindingList<Aufgabe>(tmpListTasks);
+
+            List<Projekt> tmpListProjects = appData.projekte.OrderBy(x => x.dtPlannedEnd).ToList();
+            appData.projekte = new BindingList<Projekt>(tmpListProjects);
+
+            // Set new DataSources
+            dataGridViewTasks.DataSource = appData.aufgaben;
+            dataGridViewProjects.DataSource = appData.projekte;
+        }
+
         private void buttonExit_Click(object sender, EventArgs e)
         {
             Close();
@@ -138,6 +153,8 @@ namespace MyScope
                         dlgNewTask.dateTimePickerStart.Value, dlgNewTask.dateTimePickerEnd.Value,
                         (Boolean)dlgNewTask.checkBoxStart.Checked));
                 }
+                
+                sortLists();
                 saveData();
                 loadData();
                 MessageBox.Show("Die Aufgabe wurde gespeichert", "Aufgabe gespeichert", MessageBoxButtons.OK);
@@ -149,17 +166,12 @@ namespace MyScope
             if (MessageBox.Show("Möchten Sie die ausgewählte Aufgabe wirklich dauerhaft löschen?", 
                 "Aufgabe löschen", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                /*foreach (Aufgabe item in appData.aufgaben)
-                {
-                    if (String.Compare(item.strName, dataGridViewTasks.SelectedRows[0].Cells[0].Value,
-                        true) == 0)
-                    {
-                        appData.aufgaben.Remove(item);
-                        MessageBox.Show("Die ausgewählte Aufgabe wurde gelöscht.", "Aufgabe gelöscht",
-                            MessageBoxButtons.OK);
-                        return;
-                    }
-                }*/
+                appData.aufgaben.RemoveAt(dataGridViewTasks.CurrentRow.Index);
+                sortLists();
+                saveData();
+                loadData();
+                MessageBox.Show("Die ausgewählte Aufgabe wurde gelöscht.", "Aufgabe gelöscht", 
+                    MessageBoxButtons.OK);
             }
         }
     }
