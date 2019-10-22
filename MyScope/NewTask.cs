@@ -41,7 +41,6 @@ namespace MyScope
                         MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         bOverride = true;
-                        DialogResult = DialogResult.OK;
                     }
                     else
                     {
@@ -51,6 +50,7 @@ namespace MyScope
                     }
                 }
             }
+            DialogResult = DialogResult.OK;
         }
 
         private void textBoxName_TextChanged(object sender, EventArgs e)
