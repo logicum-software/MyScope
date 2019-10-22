@@ -32,8 +32,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonExit = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonDelTask = new System.Windows.Forms.Button();
+            this.buttonNewTask = new System.Windows.Forms.Button();
             this.dataGridViewTasks = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.buttonDelProject = new System.Windows.Forms.Button();
+            this.buttonNewProject = new System.Windows.Forms.Button();
             this.dataGridViewProjects = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -44,6 +48,7 @@
             // 
             // buttonExit
             // 
+            this.buttonExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonExit.Location = new System.Drawing.Point(917, 559);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(75, 23);
@@ -54,6 +59,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonDelTask);
+            this.groupBox1.Controls.Add(this.buttonNewTask);
             this.groupBox1.Controls.Add(this.dataGridViewTasks);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -62,6 +69,28 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Aufgaben";
+            // 
+            // buttonDelTask
+            // 
+            this.buttonDelTask.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDelTask.Location = new System.Drawing.Point(125, 232);
+            this.buttonDelTask.Name = "buttonDelTask";
+            this.buttonDelTask.Size = new System.Drawing.Size(125, 24);
+            this.buttonDelTask.TabIndex = 2;
+            this.buttonDelTask.Text = "Aufgabe löschen";
+            this.buttonDelTask.UseVisualStyleBackColor = true;
+            this.buttonDelTask.Click += new System.EventHandler(this.buttonDelTask_Click);
+            // 
+            // buttonNewTask
+            // 
+            this.buttonNewTask.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonNewTask.Location = new System.Drawing.Point(9, 231);
+            this.buttonNewTask.Name = "buttonNewTask";
+            this.buttonNewTask.Size = new System.Drawing.Size(110, 25);
+            this.buttonNewTask.TabIndex = 1;
+            this.buttonNewTask.Text = "Neue Aufgabe";
+            this.buttonNewTask.UseVisualStyleBackColor = true;
+            this.buttonNewTask.Click += new System.EventHandler(this.buttonNewTask_Click);
             // 
             // dataGridViewTasks
             // 
@@ -85,11 +114,13 @@
             this.dataGridViewTasks.RowHeadersVisible = false;
             this.dataGridViewTasks.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTasks.Size = new System.Drawing.Size(965, 241);
+            this.dataGridViewTasks.Size = new System.Drawing.Size(965, 200);
             this.dataGridViewTasks.TabIndex = 0;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.buttonDelProject);
+            this.groupBox2.Controls.Add(this.buttonNewProject);
             this.groupBox2.Controls.Add(this.dataGridViewProjects);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(12, 290);
@@ -98,6 +129,26 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Projekte";
+            // 
+            // buttonDelProject
+            // 
+            this.buttonDelProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDelProject.Location = new System.Drawing.Point(125, 231);
+            this.buttonDelProject.Name = "buttonDelProject";
+            this.buttonDelProject.Size = new System.Drawing.Size(125, 25);
+            this.buttonDelProject.TabIndex = 2;
+            this.buttonDelProject.Text = "Projekt löschen";
+            this.buttonDelProject.UseVisualStyleBackColor = true;
+            // 
+            // buttonNewProject
+            // 
+            this.buttonNewProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonNewProject.Location = new System.Drawing.Point(9, 231);
+            this.buttonNewProject.Name = "buttonNewProject";
+            this.buttonNewProject.Size = new System.Drawing.Size(110, 25);
+            this.buttonNewProject.TabIndex = 1;
+            this.buttonNewProject.Text = "Neues Projekt";
+            this.buttonNewProject.UseVisualStyleBackColor = true;
             // 
             // dataGridViewProjects
             // 
@@ -119,7 +170,8 @@
             this.dataGridViewProjects.MultiSelect = false;
             this.dataGridViewProjects.Name = "dataGridViewProjects";
             this.dataGridViewProjects.RowHeadersVisible = false;
-            this.dataGridViewProjects.Size = new System.Drawing.Size(965, 232);
+            this.dataGridViewProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewProjects.Size = new System.Drawing.Size(965, 200);
             this.dataGridViewProjects.TabIndex = 0;
             // 
             // button1
@@ -160,6 +212,10 @@
         private System.Windows.Forms.DataGridView dataGridViewTasks;
         private System.Windows.Forms.DataGridView dataGridViewProjects;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonDelTask;
+        private System.Windows.Forms.Button buttonNewTask;
+        private System.Windows.Forms.Button buttonDelProject;
+        private System.Windows.Forms.Button buttonNewProject;
     }
 }
 

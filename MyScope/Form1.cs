@@ -15,7 +15,7 @@ namespace MyScope
 {
     public partial class Form1 : Form
     {
-        private AppData appData;
+        internal AppData appData;
 
         public Form1()
         {
@@ -30,7 +30,7 @@ namespace MyScope
             dataGridViewTasks.Columns[0].Width = 612;
             dataGridViewTasks.Columns[1].Visible = false;
             dataGridViewTasks.Columns[2].Visible = false;
-            dataGridViewTasks.Columns[3].HeaderText = "Geplantes Ende";
+            dataGridViewTasks.Columns[3].HeaderText = "Geplanter Abschluss";
             dataGridViewTasks.Columns[3].Width = 250;
             dataGridViewTasks.Columns[4].Visible = false;
             dataGridViewTasks.Columns[5].Visible = false;
@@ -72,7 +72,7 @@ namespace MyScope
             }
         }
 
-        private void SaveData()
+        private void saveData()
         {
             FileStream fs = new FileStream("udata.dat", FileMode.Create);
 
@@ -105,6 +105,62 @@ namespace MyScope
                 DateTime.Now, false));
             appData.aufgaben.Add(new Aufgabe("Testaufgabe 2", "Dies ist die zweite Testaufgabe", DateTime.Now,
                 DateTime.Now, false));
+        }
+
+        private void buttonNewTask_Click(object sender, EventArgs e)
+        {
+            NewTask dlgNewTask = new NewTask();
+            dlgNewTask.tmpAufgaben = new BindingList<Aufgabe>(appData.aufgaben);
+            dlgNewTask.ShowDialog();
+
+            if (dlgNewTask.DialogResult == DialogResult.OK)
+            {
+                if (dlgNewTask.bOverride)
+                {
+                    foreach (Aufgabe item in appData.aufgaben)
+                    {
+                        if (item.strName.Equals(dlgNewTask.textBoxName.Text))
+                        {
+                            item.strDescription = dlgNewTask.textBoxDescription.Text;
+                            item.dtPlannedStart = dlgNewTask.dateTimePickerStart.Value;
+                            item.dtPlannedEnd = dlgNewTask.dateTimePickerEnd.Value;
+                            if (dlgNewTask.checkBoxStart.Checked)
+                                item.iStatus = 1;
+                            else
+                                item.iStatus = 0;
+                        }
+                    }
+
+                }
+                else
+                {
+                    appData.aufgaben.Add(new Aufgabe(dlgNewTask.textBoxName.Text, dlgNewTask.textBoxDescription.Text,
+                        dlgNewTask.dateTimePickerStart.Value, dlgNewTask.dateTimePickerEnd.Value,
+                        (Boolean)dlgNewTask.checkBoxStart.Checked));
+                }
+                saveData();
+                loadData();
+                MessageBox.Show("Die Aufgabe wurde gespeichert", "Aufgabe gespeichert", MessageBoxButtons.OK);
+            }
+        }
+
+        private void buttonDelTask_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Möchten Sie die ausgewählte Aufgabe wirklich dauerhaft löschen?", 
+                "Aufgabe löschen", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                /*foreach (Aufgabe item in appData.aufgaben)
+                {
+                    if (String.Compare(item.strName, dataGridViewTasks.SelectedRows[0].Cells[0].Value,
+                        true) == 0)
+                    {
+                        appData.aufgaben.Remove(item);
+                        MessageBox.Show("Die ausgewählte Aufgabe wurde gelöscht.", "Aufgabe gelöscht",
+                            MessageBoxButtons.OK);
+                        return;
+                    }
+                }*/
+            }
         }
     }
 }
