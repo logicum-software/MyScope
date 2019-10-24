@@ -177,7 +177,9 @@ namespace MyScope
 
         private void buttonNewProject_Click(object sender, EventArgs e)
         {
+            NewProject dlgNewProject = new NewProject();
 
+            dlgNewProject.ShowDialog();
         }
     }
 }
