@@ -174,5 +174,10 @@ namespace MyScope
                     MessageBoxButtons.OK);
             }
         }
+
+        private void buttonNewProject_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
