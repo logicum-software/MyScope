@@ -181,5 +181,13 @@ namespace MyScope
 
             dlgNewProject.ShowDialog();
         }
+
+        private void dataGridViewTasks_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewTasks.SelectedRows != null)
+            {
+
+            }
+        }
     }
 }

@@ -116,6 +116,7 @@
             this.dataGridViewTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewTasks.Size = new System.Drawing.Size(965, 200);
             this.dataGridViewTasks.TabIndex = 0;
+            this.dataGridViewTasks.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTasks_CellContentDoubleClick);
             // 
             // groupBox2
             // 
