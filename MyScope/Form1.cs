@@ -186,7 +186,16 @@ namespace MyScope
         {
             if (dataGridViewTasks.SelectedRows != null)
             {
+                NewTask dlgEditTask = new NewTask();
 
+                dlgEditTask.tmpAufgaben = new BindingList<Aufgabe>(appData.aufgaben);
+                dlgEditTask.initializeData(appData.aufgaben[dataGridViewTasks.SelectedCells[0].RowIndex].strName,
+                    appData.aufgaben[dataGridViewTasks.SelectedCells[0].RowIndex].strDescription,
+                    appData.aufgaben[dataGridViewTasks.SelectedCells[0].RowIndex].dtPlannedStart,
+                    appData.aufgaben[dataGridViewTasks.SelectedCells[0].RowIndex].dtPlannedEnd,
+                    appData.aufgaben[dataGridViewTasks.SelectedCells[0].RowIndex].iStatus);
+
+                dlgEditTask.ShowDialog();
             }
         }
     }

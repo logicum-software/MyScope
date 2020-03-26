@@ -57,5 +57,14 @@ namespace MyScope
         {
             buttonSave.Enabled = true;
         }
+
+        public void initializeData(String name, String description, DateTime plannedstart, DateTime plannedend, int status)
+        {
+            textBoxName.Text = name;
+            textBoxDescription.Text = description;
+            dateTimePickerStart.Value = plannedstart;
+            dateTimePickerEnd.Value = plannedend;
+            // Status fehlt noch !
+        }
     }
 }
